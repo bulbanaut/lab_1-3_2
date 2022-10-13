@@ -4,15 +4,24 @@ fn main() {
     println!("Введите трёхзначное неотрицательное число:");
     let x: u16 = read_var();
 
-    let rang = 0..999;
+    let rang = 100..999;
 
     if rang.contains(&x) {
         let x: Vec<u16> = num_to_vec(x);
         let mut y: u16 = 0;
+
         for i in x {
             y += i;
         }
-        println!("{y}")
+
+        let x: u16 = y % 2; 
+
+        if x == 0 {
+            println!("Сумма цифр чётна и равна {y}");
+        } else {
+            println!("Сумма цифр нечётна и равна {y}");
+        }
+        pause();
     } else {
         println!("Переменная дожна быть трёхзначной");
         main();
@@ -38,13 +47,19 @@ fn read_var() -> u16 {
 }
 
 fn num_to_vec(n: u16) -> Vec<u16> {
-    let mut digits = Vec::new();
+    let mut dig = Vec::new();
     let mut n = n;
     while n > 9 {
-        digits.push(n % 10);
+        dig.push(n % 10);
         n = n / 10;
     }
-    digits.push(n);
-    digits.reverse();
-    digits
+    dig.push(n);
+    dig.reverse();
+    dig
+}
+
+fn pause() { //фукция паузы
+    println!("нажмите Enter чтобы выйти.");
+    let mut q = String::new();
+    stdin().read_line(&mut q).expect("ошибка");
 }
