@@ -4,13 +4,13 @@ fn main() {
     println!("Введите трёхзначное неотрицательное число:");
     let x: u16 = read_var();
 
-    let rang = 100..999;
+    let rang = 100..999; //задаёт диапазон для числа
 
-    if rang.contains(&x) {
+    if rang.contains(&x) { //проверяет содержит ли диапазон х
         let x: Vec<u16> = num_to_vec(x);
         let mut y: u16 = 0;
 
-        for i in x {
+        for i in x { //складывает цифры
             y += i;
         }
 
@@ -46,7 +46,7 @@ fn read_var() -> u16 {
     }
 }
 
-fn num_to_vec(n: u16) -> Vec<u16> {
+fn num_to_vec(n: u16) -> Vec<u16> { //разбивает число на цифры
     let mut dig = Vec::new();
     let mut n = n;
     while n > 9 {
